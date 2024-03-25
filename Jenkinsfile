@@ -1,17 +1,13 @@
 pipeline {
     agent any
-    options {
-        disableConcurrentBuilds() // Zapobiega równoczesnym wykonaniom tego samego pipeline
+    parameters {
+        string(name: 'GREETING', defaultValue: 'Hello', description: 'The greeting message')
+        choice(name: 'BRANCH', choices: ['master', 'dev'], description: 'Branch to build')
     }
     stages {
-        stage('Example Stage') {
+        stage('Example') {
             steps {
-                script {
-                    // Symulacja długotrwałego procesu...
-                    echo 'Wykonuje długotrwały proces...'
-                    sleep(time: 20, unit: 'SECONDS')
-                    echo 'Proces zakończony.'
-                }
+                echo "${params.GREETING}, we are building the ${params.BRANCH} branch."
             }
         }
     }
