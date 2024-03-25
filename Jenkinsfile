@@ -18,6 +18,11 @@ pipeline {
                 }
             }
         }
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/PeterPorzuczek/TimeRiddle.git', branch: 'master'
+            }
+        }
         stage('Test') {
             steps {
                 echo "Test..."
