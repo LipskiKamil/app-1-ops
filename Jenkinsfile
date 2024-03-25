@@ -6,11 +6,6 @@ pipeline {
         booleanParam(name: 'FULL_BUILD', defaultValue: true, description: 'Perform a full build')
     }
     stages {
-        stage('Initialize') {
-            steps {
-                echo "Setup initiated..."
-            }
-        }
         stage('Build') {
             steps {
                 echo "${params.GREETING}, starting build on ${params.BRANCH} branch."
@@ -22,6 +17,11 @@ pipeline {
                     }
                 }
             }
+        stage('Test') {
+            steps {
+                echo "Test..."
+            }
+        }
         }
         stage('Deploy') {
             steps {
